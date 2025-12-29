@@ -4,6 +4,9 @@
     "private": true,
     "scripts": {
         "dev": "next dev",
+        "dev:services:up": "docker compose up -d",
+        "dev:services:down": "docker compose down",
+        "dev:seed": "tsx --env-file=.env scripts/seed.ts",
         "build": "next build",
         "start": "next start",
         "lint": "biome check .",
@@ -11,6 +14,7 @@
     },
     "dependencies": {
         "hono": "4.11.3",
+        "ioredis": "5.8.2",
         "next": "16.1.1",
         "react": "19.2.3",
         "react-dom": "19.2.3"
@@ -22,6 +26,7 @@
         "@types/react": "^19",
         "@types/react-dom": "^19",
         "tailwindcss": "^4",
+        "tsx": "^4.21.0",
         "typescript": "^5"
     }
 }

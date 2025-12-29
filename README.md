@@ -16,6 +16,33 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+## Local Development with Redis
+
+### Prerequisites
+- Docker and Docker Compose installed
+
+### Environment Setup
+Copy `.env.example` to `.env.local`:
+```bash
+cp .env.example .env.local
+```
+
+### Start Redis
+```bash
+npm run dev:services
+```
+
+### Stop Redis
+```bash
+npm run dev:services:stop
+```
+
+### Verify Redis is Running
+```bash
+docker compose exec redis redis-cli ping
+# Expected output: PONG
+```
+
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
