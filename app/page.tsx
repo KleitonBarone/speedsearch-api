@@ -1,35 +1,38 @@
-"use client"
+"use client";
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
 export default function Home() {
-    const [input, setInput] = useState<string>("")
+    const [input, setInput] = useState<string>("");
     const [searchResult, setSearchResult] = useState<{
-        results: string[],
-        duration: number,
+        results: string[];
+        duration: number;
     }>({
         results: [],
         duration: 0,
-    })
+    });
 
     useEffect(() => {
         const fetchData = async () => {
-            if (!input) return setSearchResult({
-                results: [],
-                duration: 0,
-            })
+            if (!input)
+                return setSearchResult({
+                    results: [],
+                    duration: 0,
+                });
 
-            const result = await fetch(`/api/search?q=${input}`).then(res => res.json())
+            const result = await fetch(`/api/search?q=${input}`).then((res) =>
+                res.json(),
+            );
 
             setSearchResult({
                 results: result.results,
                 duration: result.duration,
-            })
-        }
+            });
+        };
 
-        fetchData()
-    }, [input])
+        fetchData();
+    }, [input]);
 
     return (
         <main className="min-h-screen flex items-center justify-center p-4 bg-gray-100 dark:bg-gray-900">
