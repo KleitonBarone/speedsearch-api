@@ -33,6 +33,9 @@ export default function Home() {
                 setResults(data.results || []);
                 setDuration(data.duration ?? 0);
             } catch (err) {
+                if (err instanceof Error && err.name === "AbortError") {
+                    return;
+                }
                 console.error("Failed to fetch results", err);
                 setResults([]);
                 setDuration(0);
@@ -59,15 +62,13 @@ export default function Home() {
             <main className="container mx-auto max-w-3xl flex flex-col items-center pt-32 pb-20 px-4 min-h-screen">
                 <div className="text-center mb-12 space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-700">
                     <h1 className="text-6xl md:text-7xl font-extrabold tracking-tight">
-                        <span className="bg-gradient-to-r from-blue-600 via-indigo-500 to-purple-500 bg-clip-text text-transparent drop-shadow-sm">
+                        <span className="text-zinc-900 dark:text-white">
                             SpeedSearch ⚡
                         </span>
                     </h1>
                 </div>
 
                 <div className="w-full relative group z-10">
-                    <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl blur opacity-20 group-hover:opacity-30 transition-opacity duration-500 -z-10"></div>
-
                     <div className="relative flex items-center bg-white dark:bg-zinc-900/80 backdrop-blur-xl border border-zinc-200 dark:border-zinc-800 rounded-2xl shadow-xl shadow-blue-500/5 transition-all duration-300 focus-within:ring-2 focus-within:ring-blue-500/20 focus-within:border-blue-500/50">
                         <div className="pl-6 text-zinc-400">
                             {isLoading ? (
