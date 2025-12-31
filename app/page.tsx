@@ -26,7 +26,7 @@ export default function Home() {
             try {
                 const response = await fetch(
                     `/api/search?q=${encodeURIComponent(input)}`,
-                    { signal }
+                    { signal },
                 );
                 const data = await response.json();
 
@@ -53,8 +53,7 @@ export default function Home() {
     return (
         <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)] transition-colors duration-500 selection:bg-blue-500/30">
             <nav className="fixed top-0 w-full p-6 flex justify-between items-center z-50 pointer-events-none">
-                <div className="pointer-events-auto">
-                </div>
+                <div className="pointer-events-auto"></div>
             </nav>
 
             <main className="container mx-auto max-w-3xl flex flex-col items-center pt-32 pb-20 px-4 min-h-screen">
@@ -122,7 +121,8 @@ export default function Home() {
                             ))}
                         </div>
                     ) : (
-                        input && !isLoading && (
+                        input &&
+                        !isLoading && (
                             <div className="text-center py-20 animate-in fade-in zoom-in-95 duration-300">
                                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-zinc-100 dark:bg-zinc-800/50 mb-4">
                                     <SearchIcon className="w-8 h-8 text-zinc-400" />
